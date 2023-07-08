@@ -51,7 +51,10 @@ class CorreiosSensor(CoordinatorEntity[CorreiosSensorCoordinator], SensorEntity)
         self.track = track
         self._name = name
 
-    def __get_objeto__(self) -> list:
+    def __objeto_existe__(self) -> bool:
+        return "mensagem" not in self.__get_objeto__()
+
+    def __get_objeto__(self) -> dict:
         return self.coordinator.data["objetos"][0]
 
     def __get_eventos__(self) -> list:
@@ -74,7 +77,10 @@ class CorreiosSensor(CoordinatorEntity[CorreiosSensorCoordinator], SensorEntity)
 
     @property
     def state(self):
-        return self.__get_ultimo_evento__("descricao")
+        if self.__objeto_existe__():
+            return self.__get_ultimo_evento__("descricao")
+        else:
+            return self.__get_objeto__()["mensagem"]
 
     @property
     def icon(self):
@@ -82,15 +88,19 @@ class CorreiosSensor(CoordinatorEntity[CorreiosSensorCoordinator], SensorEntity)
 
     @property
     def extra_state_attributes(self):
-        return {
-            "Descrição": self.__get_ultimo_evento__("descricao"),
-            "Código Objeto": self.track,
-            "Origem": self.__get_ultimo_evento__("unidade")["nome"],
-            "Destino": self.__get_ultimo_evento__("unidadeDestino")["nome"],
-            "Última Movimentação": self.__get_ultimo_evento__("dtHrCriado"),
-            "Tipo Postal": self.__get_objeto__()["tipoPostal"]["categoria"],
-            # "Movimentações": self.trackings,
-        }
+        if self.__objeto_existe__():
+             return {
+                "Descrição": self.__get_ultimo_evento__("descricao"),
+                "Código Objeto": self.track,
+                "Origem": self.__get_ultimo_evento__("unidade")["nome"],
+                "Destino": self.__get_ultimo_evento__("unidadeDestino")["nome"],
+                "Última Movimentação": self.__get_ultimo_evento__("dtHrCriado"),
+                "Tipo Postal": self.__get_objeto__()["tipoPostal"]["categoria"],
+                # "Movimentações": self.trackings,
+            }
+        else:
+            return {}
+
 
     @property
     def device_info(self) -> DeviceInfo | None:
