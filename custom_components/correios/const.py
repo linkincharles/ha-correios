@@ -3,6 +3,7 @@ from typing import Final
 
 from homeassistant.const import Platform
 
+APP_CHECK_TOKEN:Final = "app-check-token"
 DOMAIN: Final = "correios"
 PLATFORMS: Final = [Platform.SENSOR]
 
@@ -13,5 +14,5 @@ CONF_DESCRIPTION = "description"
 DEFAULT_DESCRIPTION: Final = "Encomenda"
 
 ICON = "mdi:box-variant-closed"
-BASE_API = "https://proxyapp.correios.com.br/v1/sro-rastro/{}"
-BASE_URL = "https://proxyapp.correios.com.br"
+BASE_API = "https://proxyapp.correios.com.br/v1/sro-rastro/"
+BASE_API_TOKEN = "https://proxyapp.correios.com.br/v2/app-validation"
