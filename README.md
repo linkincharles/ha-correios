@@ -1,6 +1,7 @@
 # Home Assistant Correios
 
 [![Generic badge](https://img.shields.io/badge/contributor-@dougiteixeira-<COLOR>.svg)](https://github.com/dougiteixeira)
+[![Generic badge](https://img.shields.io/badge/contributor-@oridestomkiel-<COLOR>.svg)](https://github.com/oridestomkiel)
 
 ## Rastreamento de objetos nos correios.
 
@@ -20,7 +21,7 @@ Clique no menu e vá em Repositórios personalizados.
 Preencha com o endereço do github do componente:
 
 ```markdown
-https://github.com/oridestomkiel/home-assistant-correios
+https://github.com/luyzfernando/ha-correios
 ```
 
 Selecione Integração. Clique em Adicionar:
@@ -80,23 +81,13 @@ https://www.correios.com.br/atendimento/ferramentas/sistemas/arquivos/lista-de-e
 
 ### Attributes
 
-* Descrição: Apelido dado ao objeto no arquivio de configuração 
+* Descrição: Apelido dado ao objeto no arquivio de configuração
 * Código Objeto: Código identificador do objeto nos Correios
 * Data Prevista: Quando existente, exibe a previsão de entrega do objeto
 * Tipo Postal: Tipo de serviço referente ao pacote enviado.
-* Movimentações: Lista com todas as movimenrações do pacote, desde a postagem até a entrega.
 
 ![exemplo2][exampleimg2]
 
-***
-
-## Curtiu? Pague-me um café!
-
-Sinta-se livre para me pagar um café: Chave aleatória Pix `20b16bb2-d827-48a6-9e2c-924cd11a1a79` ou pelo QR CODE abaixo ❤.
-
-![pix][pix]
-
-***
 
 [hacs1]: resources/hacs-01.png
 [hacs2]: resources/hacs-02.png
@@ -111,4 +102,3 @@ Sinta-se livre para me pagar um café: Chave aleatória Pix `20b16bb2-d827-48a6-
 
 [exampleimg1]: exemplo1.jpg
 [exampleimg2]: exemplo2.jpg
-[pix]: pix.jpg

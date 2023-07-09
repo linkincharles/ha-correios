@@ -1,10 +1,11 @@
 # Home Assistant Correios
 
 [![Generic badge](https://img.shields.io/badge/contributor-@dougiteixeira-<COLOR>.svg)](https://github.com/dougiteixeira)
+[![Generic badge](https://img.shields.io/badge/contributor-@oridestomkiel-<COLOR>.svg)](https://github.com/oridestomkiel)
 
 ## Rastreamento de objetos nos correios.
 
-![exemplo1](https://github.com/oridestomkiel/home-assistant-correios/blob/main/exemplo1.jpg)
+![exemplo1](https://github.com/luyzfernando08/ha-correios/blob/main/exemplo1.jpg)
 
 ### Configuração Automática
 
@@ -19,20 +20,20 @@ A adição da integração à sua instância do Home Assistant pode ser feita at
 * Na barra lateral clique em Configuração .
 * No menu de configuração selecione Dispositivos e Serviços .
 
-![hacs10](https://raw.githubusercontent.com/oridestomkiel/home-assistant-correios/main/resources/hacs-10.png)
+![hacs10](https://github.com/luyzfernando08/ha-correios/main/resources/hacs-10.png)
 
 * Vá no canto direito embaixo e clique em “+ Adicionar Integração”.
 * Na lista, pesquise e selecione “Rastreamento Correios” .
 
-![hacs7](https://raw.githubusercontent.com/oridestomkiel/home-assistant-correios/main/resources/hacs-07.png)
+![hacs7](https://github.com/luyzfernando08/ha-correios/main/resources/hacs-07.png)
 
 * Digite a descrição e o código da ecomenda e clique no botão Enviar.
 
-![hacs8](https://raw.githubusercontent.com/oridestomkiel/home-assistant-correios/main/resources/hacs-08.png)
+![hacs8](https://github.com/luyzfernando08/ha-correios/main/resources/hacs-08.png)
 
 - [x] Pronto, agora você verá seus rastreios e poderá realizar as suas integrações!
 
-![hacs9](https://raw.githubusercontent.com/oridestomkiel/home-assistant-correios/main/resources/hacs-09.png)
+![hacs9](https://github.com/luyzfernando08/ha-correios/main/resources/hacs-09.png)
 
 ***
 
@@ -48,20 +49,9 @@ https://www.correios.com.br/atendimento/ferramentas/sistemas/arquivos/lista-de-e
 
 ### Attributes
 
-* Descrição: Apelido dado ao objeto no arquivio de configuração 
+* Descrição: Apelido dado ao objeto no arquivio de configuração
 * Código Objeto: Código identificador do objeto nos Correios
 * Data Prevista: Quando existente, exibe a previsão de entrega do objeto
 * Tipo Postal: Tipo de serviço referente ao pacote enviado.
-* Movimentações: Lista com todas as movimenrações do pacote, desde a postagem até a entrega.
 
-![exemplo2](https://github.com/oridestomkiel/home-assistant-correios/blob/main/exemplo2.jpg)
-
-***
-
-## Curtiu? Pague-me um café!
-
-Sinta-se livre para me pagar um café: Chave aleatória Pix `20b16bb2-d827-48a6-9e2c-924cd11a1a79` ou pelo QR CODE abaixo ❤.
-
-![pix](https://github.com/oridestomkiel/home-assistant-correios/blob/main/pix.jpg)
-
-***
+![exemplo2](https://github.com/luyzfernando08/ha-correios/blob/main/exemplo2.jpg)

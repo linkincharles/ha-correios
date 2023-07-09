@@ -1,7 +1,7 @@
 """
 A platform that provides information about the tracking of objects in the post office in Brazil
 For more details about this component, please refer to the documentation at
-https://github.com/oridestomkiel/home-assistant-correios
+https://github.com/luyzfernando08/ha-correios
 """
 
 import logging
@@ -32,7 +32,7 @@ async def async_setup_entry(
     """Set up Correios sensor"""
     track = entry.data[CONF_TRACKING]
     description = entry.data[CONF_DESCRIPTION]
-    name = f"{description} ({track})"
+    name = f"Correios - {description}"
     coordinator = CorreiosSensorCoordinator(hass=hass,config_entry=entry)
     await async_add_entities([CorreiosSensor(coordinator,hass,track,name)],True,)
 
