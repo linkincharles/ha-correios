@@ -21,7 +21,7 @@ Clique no menu e vá em Repositórios personalizados.
 Preencha com o endereço do github do componente:
 
 ```markdown
-https://github.com/luyzfernando/ha-correios
+https://github.com/luyzfernando08/ha-correios
 ```
 
 Selecione Integração. Clique em Adicionar:
