@@ -15,7 +15,7 @@ class CorreiosSensorCoordinator(DataUpdateCoordinator):
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None:
         self.api = Api(hass=hass)
         self.codigoRastreio = config_entry.data.get(CONF_TRACKING)
-        update_interval = timedelta(minutes=randrange(30, 45))
+        update_interval = timedelta(minutes=randrange(30,45))
         super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=update_interval)
 
     async def _async_update_data(self) -> dict:

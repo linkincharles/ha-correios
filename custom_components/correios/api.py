@@ -11,9 +11,6 @@ _LOGGER = logging.getLogger(__name__)
 class Api:
     def __init__(self,hass:HomeAssistant) -> None:
         self.hass = hass
-        self.token = None
-        if self.__pegar_token__() is not None:
-            self.token = self.__pegar_token__()
 
     def __salvar_token__(self,token) -> None:
         self.hass.data[DOMAIN][APP_CHECK_TOKEN] = token
@@ -21,17 +18,18 @@ class Api:
     def __pegar_token__(self) -> str:
         return self.hass.data[DOMAIN][APP_CHECK_TOKEN]
 
-    def __check_token__(self) -> bool:
+    def __token_eh_valido__(self) -> bool:
         try:
-            jwt.decode(self.token,options={"verify_signature": False,"verify_exp": True})
+            jwt.decode(self.__pegar_token__(),options={"verify_signature": False,"verify_exp": True})
             return True
         except:
+            _LOGGER.debug("Token expirado")
             return False
 
-    async def __getToken__(self):
-        if self.token is not None and self.__check_token__():
+    async def __create_token__(self):
+        if self.__pegar_token__() is not None and self.__token_eh_valido__():
             _LOGGER.debug("Token já existe e está válido")
-            return self.token
+            return
 
         def get():
             requestToken = "YW5kcm9pZDtici5jb20uY29ycmVpb3MucHJlYXRlbmRpbWVudG87RjMyRTI5OTc2NzA5MzU5ODU5RTBCOTdGNkY4QTQ4M0I5Qjk1MzU3ODs1LjEuMTQ="
@@ -59,11 +57,11 @@ class Api:
         return response
 
     async def rastrear(self,codigoRastreio: str) -> any:
-        token = await self.__getToken__()
+        await self.__create_token__()
 
         def get():
             headers = {"Content-type": "application/json","User-Agent": "Dart/2.18 (dart:io)"}
-            headers[APP_CHECK_TOKEN] = token
+            headers[APP_CHECK_TOKEN] = self.__pegar_token__()
 
             response = requests.get(f"{BASE_API}{codigoRastreio}",headers=headers)
 
