@@ -60,8 +60,11 @@ class CorreiosSensor(CoordinatorEntity[CorreiosSensorCoordinator], SensorEntity)
     def __get_eventos__(self) -> list:
         return self.__get_objeto__()["eventos"]
 
-    def __get_ultimo_evento__(self,parametro: str) -> dict:
-        return self.__get_eventos__()[0][parametro]
+    def __get_ultimo_evento__(self) -> dict:
+        return self.__get_eventos__()[0]
+
+    def __get_ultimo_evento_com_parametro__(self,parametro: str) -> dict:
+        return self.__get_ultimo_evento__()[parametro]
 
     @property
     def name(self) -> str | UndefinedType | None:
@@ -78,7 +81,7 @@ class CorreiosSensor(CoordinatorEntity[CorreiosSensorCoordinator], SensorEntity)
     @property
     def state(self):
         if self.__objeto_existe__():
-            return self.__get_ultimo_evento__("descricao")
+            return self.__get_ultimo_evento_com_parametro__("descricao")
         else:
             return self.__get_objeto__()["mensagem"]
 
@@ -89,12 +92,23 @@ class CorreiosSensor(CoordinatorEntity[CorreiosSensorCoordinator], SensorEntity)
     @property
     def extra_state_attributes(self):
         if self.__objeto_existe__():
+             origem = "-"
+             destino = "-"
+
+             if "nome" in self.__get_ultimo_evento_com_parametro__("unidade"):
+                 origem =  self.__get_ultimo_evento_com_parametro__("unidade")["nome"]
+
+             if "unidadeDestino" in self.__get_ultimo_evento__():
+                if "nome" in self.__get_ultimo_evento_com_parametro__("unidadeDestino"):
+                    destino =  self.__get_ultimo_evento_com_parametro__("unidadeDestino")["nome"]
+
+
              return {
-                "Descrição": self.__get_ultimo_evento__("descricao"),
+                "Descrição": self.__get_ultimo_evento_com_parametro__("descricao"),
                 "Código Objeto": self.track,
-                "Origem": self.__get_ultimo_evento__("unidade")["nome"],
-                "Destino": self.__get_ultimo_evento__("unidadeDestino")["nome"],
-                "Última Movimentação": self.__get_ultimo_evento__("dtHrCriado"),
+                "Origem": origem,
+                "Destino": destino,
+                "Última Movimentação": self.__get_ultimo_evento_com_parametro__("dtHrCriado"),
                 "Tipo Postal": self.__get_objeto__()["tipoPostal"]["categoria"],
                 # "Movimentações": self.trackings,
             }

@@ -5,7 +5,7 @@
 
 ## Rastreamento de objetos nos correios.
 
-![exemplo1](https://github.com/luyzfernando08/ha-correios/blob/main/exemplo1.jpg)
+![exemplo1](https://raw.github.com/luyzfernando08/ha-correios/blob/main/exemplo1.jpg)
 
 ### Configuração Automática
 
@@ -20,20 +20,20 @@ A adição da integração à sua instância do Home Assistant pode ser feita at
 * Na barra lateral clique em Configuração .
 * No menu de configuração selecione Dispositivos e Serviços .
 
-![hacs10](https://github.com/luyzfernando08/ha-correios/main/resources/hacs-10.png)
+![hacs10](https://raw.github.com/luyzfernando08/ha-correios/main/resources/hacs-10.png)
 
 * Vá no canto direito embaixo e clique em “+ Adicionar Integração”.
 * Na lista, pesquise e selecione “Rastreamento Correios” .
 
-![hacs7](https://github.com/luyzfernando08/ha-correios/main/resources/hacs-07.png)
+![hacs7](https://raw.github.com/luyzfernando08/ha-correios/main/resources/hacs-07.png)
 
 * Digite a descrição e o código da ecomenda e clique no botão Enviar.
 
-![hacs8](https://github.com/luyzfernando08/ha-correios/main/resources/hacs-08.png)
+![hacs8](https://raw.github.com/luyzfernando08/ha-correios/main/resources/hacs-08.png)
 
 - [x] Pronto, agora você verá seus rastreios e poderá realizar as suas integrações!
 
-![hacs9](https://github.com/luyzfernando08/ha-correios/main/resources/hacs-09.png)
+![hacs9](https://raw.github.com/luyzfernando08/ha-correios/main/resources/hacs-09.png)
 
 ***
 
@@ -54,4 +54,4 @@ https://www.correios.com.br/atendimento/ferramentas/sistemas/arquivos/lista-de-e
 * Data Prevista: Quando existente, exibe a previsão de entrega do objeto
 * Tipo Postal: Tipo de serviço referente ao pacote enviado.
 
-![exemplo2](https://github.com/luyzfernando08/ha-correios/blob/main/exemplo2.jpg)
+![exemplo2](https://raw.github.com/luyzfernando08/ha-correios/blob/main/exemplo2.jpg)
