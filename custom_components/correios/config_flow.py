@@ -9,7 +9,7 @@ from homeassistant.config_entries import ConfigFlow
 from homeassistant.data_entry_flow import FlowResult
 
 
-from .const import CONF_TRACKING, CONF_DESCRIPTION, DEFAULT_NAME, DOMAIN
+from .const import CONF_TRACKING, CONF_DESCRIPTION, DOMAIN
 
 
 class CorreiosConfigFlow(ConfigFlow, domain=DOMAIN):

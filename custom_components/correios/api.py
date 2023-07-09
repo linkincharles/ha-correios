@@ -32,21 +32,21 @@ class Api:
             return
 
         def get():
-            requestToken = "YW5kcm9pZDtici5jb20uY29ycmVpb3MucHJlYXRlbmRpbWVudG87RjMyRTI5OTc2NzA5MzU5ODU5RTBCOTdGNkY4QTQ4M0I5Qjk1MzU3ODs1LjEuMTQ="
+            request_token = "YW5kcm9pZDtici5jb20uY29ycmVpb3MucHJlYXRlbmRpbWVudG87RjMyRTI5OTc2NzA5MzU5ODU5RTBCOTdGNkY4QTQ4M0I5Qjk1MzU3ODs1LjEuMTQ="
             data = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
             hash_object = hashlib.md5()
-            hash_object.update(f"requestToken{requestToken}data{data}".encode())
+            hash_object.update(f"requestToken{request_token}data{data}".encode())
             sign = hash_object.hexdigest()
 
-            jsonData = {
+            json_data = {
                 "sign": sign,
                 "data": data,
-                "requestToken": requestToken
+                "requestToken": request_token
             }
 
             headers = {"Content-type": "application/json","User-Agent": "Dart/2.18 (dart:io)"}
-            response = requests.post(BASE_API_TOKEN,data=json.dumps(jsonData),headers=headers)
+            response = requests.post(BASE_API_TOKEN,data=json.dumps(json_data),headers=headers)
 
             return json.loads(response.text)["token"]
 
@@ -56,20 +56,20 @@ class Api:
 
         return response
 
-    async def rastrear(self,codigoRastreio: str) -> any:
+    async def rastrear(self,codigo_rastreio: str) -> any:
         await self.__create_token__()
 
         def get():
             headers = {"Content-type": "application/json","User-Agent": "Dart/2.18 (dart:io)"}
             headers[APP_CHECK_TOKEN] = self.__pegar_token__()
 
-            response = requests.get(f"{BASE_API}{codigoRastreio}",headers=headers)
+            response = requests.get(f"{BASE_API}{codigo_rastreio}",headers=headers)
 
             data = json.loads(response.text)
 
             return data
 
-        _LOGGER.debug(f"Pesquisando código de rastreio ==> {codigoRastreio}")
+        _LOGGER.debug(f"Pesquisando código de rastreio ==> {codigo_rastreio}")
 
         response = await self.hass.async_add_executor_job(get)
 

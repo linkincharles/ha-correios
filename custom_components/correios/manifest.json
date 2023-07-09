@@ -1,7 +1,7 @@
 {
   "domain": "correios",
   "name": "Rastreamento Correios",
-  "version": "1.0",
+  "version": "1.0.2",
   "documentation": "https://github.com/luyzfernando08/ha-correios",
   "dependencies": [],
   "codeowners": [

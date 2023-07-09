@@ -31,10 +31,9 @@ async def async_setup_entry(
 ) -> None:
     """Set up Correios sensor"""
     track = entry.data[CONF_TRACKING]
-    description = entry.data[CONF_DESCRIPTION]
-    name = f"Correios - {description}"
+    nome_objeto = entry.data[CONF_DESCRIPTION]
     coordinator = CorreiosSensorCoordinator(hass=hass,config_entry=entry)
-    await async_add_entities([CorreiosSensor(coordinator,hass,track,name)],True,)
+    async_add_entities([CorreiosSensor(coordinator,hass,track,nome_objeto)],True,)
 
 
 class CorreiosSensor(CoordinatorEntity[CorreiosSensorCoordinator], SensorEntity):
@@ -42,14 +41,15 @@ class CorreiosSensor(CoordinatorEntity[CorreiosSensorCoordinator], SensorEntity)
         self,
         coordinator: CorreiosSensorCoordinator,
         hass: HomeAssistant,
-        track,
-        name
+        track: str,
+        nome_objeto: str
     ):
         super().__init__(coordinator)
         self.coordinator = coordinator
         self.hass = hass
         self.track = track
-        self._name = name
+        self._name = f"Correios - {nome_objeto}"
+        self.nome_objeto = nome_objeto
 
     def __objeto_existe__(self) -> bool:
         return "mensagem" not in self.__get_objeto__()
@@ -104,7 +104,8 @@ class CorreiosSensor(CoordinatorEntity[CorreiosSensorCoordinator], SensorEntity)
 
 
              return {
-                "Descrição": self.__get_ultimo_evento_com_parametro__("descricao"),
+                "Nome": self.nome_objeto,
+                "Status": self.__get_ultimo_evento_com_parametro__("descricao"),
                 "Código Objeto": self.track,
                 "Origem": origem,
                 "Destino": destino,
@@ -121,7 +122,7 @@ class CorreiosSensor(CoordinatorEntity[CorreiosSensorCoordinator], SensorEntity)
         return DeviceInfo(
             entry_type=dr.DeviceEntryType.SERVICE,
             connections=None,
-            identifiers={(DOMAIN, self.track)},
+            identifiers={(DOMAIN,)},
             manufacturer="Correios",
             name=self.track,
             model="Não aplicável",
