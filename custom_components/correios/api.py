@@ -6,11 +6,14 @@ import requests
 from homeassistant.core import HomeAssistant
 from .const import DOMAIN,APP_CHECK_TOKEN,BASE_API,BASE_API_TOKEN
 import jwt
+import asyncio
+
 _LOGGER = logging.getLogger(__name__)
 
 class Api:
     def __init__(self,hass:HomeAssistant) -> None:
         self.hass = hass
+        self.lock = asyncio.Lock()
 
     def __salvar_token__(self,token) -> None:
         self.hass.data[DOMAIN][APP_CHECK_TOKEN] = token
@@ -26,7 +29,7 @@ class Api:
             _LOGGER.debug("Token expirado")
             return False
 
-    async def __create_token__(self):
+    async def async_create_token(self) -> None:
         if self.__pegar_token__() is not None and self.__token_eh_valido__():
             _LOGGER.debug("Token já existe e está válido")
             return
@@ -51,13 +54,13 @@ class Api:
             return json.loads(response.text)["token"]
 
         _LOGGER.debug("Gerando token")
+
         response = await self.hass.async_add_executor_job(get)
         self.__salvar_token__(response)
 
-        return response
-
     async def rastrear(self,codigo_rastreio: str) -> any:
-        await self.__create_token__()
+        async with self.lock:
+            await self.async_create_token()
 
         def get():
             headers = {"Content-type": "application/json","User-Agent": "Dart/2.18 (dart:io)"}

@@ -13,7 +13,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class CorreiosSensorCoordinator(DataUpdateCoordinator):
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None:
-        self.api = Api(hass=hass)
+        self.api = hass.data[DOMAIN]["Api"] # Api(hass=hass)
         self.codigo_rastreio = config_entry.data.get(CONF_TRACKING)
         update_interval = timedelta(minutes=randrange(30,45))
         super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=update_interval)
