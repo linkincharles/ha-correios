@@ -15,4 +15,4 @@ DEFAULT_DESCRIPTION: Final = "Encomenda"
 
 ICON = "mdi:box-variant-closed"
 BASE_API = "https://proxyapp.correios.com.br/v1/sro-rastro/"
-BASE_API_TOKEN = "https://proxyapp.correios.com.br/v2/app-validation"
+BASE_API_TOKEN = "https://proxyapp.correios.com.br/v3/app-validation"
